@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Namaz Attendance</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7f3;--card:#fff;--tx:#1b2a22;--mu:#5d6d63;--pr:#0f6b46;--pr2:#e3f1ea;--bd:#d8e2db;--gold:#b8860b;--gb:#fff6d6;--dg:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a15;--card:#18251e;--tx:#e6efe9;--mu:#9bb0a3;--pr:#3ec58a;--pr2:#1f3a2d;--bd:#2c4235;--gold:#f0c040;--gb:#3a3212;--dg:#ff8a80}}
+:root[data-theme="dark"]{--bg:#101a15;--card:#18251e;--tx:#e6efe9;--mu:#9bb0a3;--pr:#3ec58a;--pr2:#1f3a2d;--bd:#2c4235;--gold:#f0c040;--gb:#3a3212;--dg:#ff8a80}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 system-ui,sans-serif}
+.ur{font-family:'Mhr Nastaleeq Web','Mehr Nastaleeq Web','Noto Nastaliq Urdu',serif;line-height:2.1}
+.ar{font-family:'Amiri',serif;font-size:1.5em;line-height:2;direction:rtl}
+header{background:var(--pr);color:#fff;padding:14px 16px}header h1{margin:0;font-size:20px}header small{opacity:.85}
+nav{position:fixed;z-index:9;background:var(--card);display:flex}
+nav button{border:0;background:none;flex:1;display:flex;flex-direction:column;align-items:center;gap:0;font-size:12px;padding:8px 2px;border-radius:0;white-space:nowrap}
+nav button.on{color:var(--pr);font-weight:700;background:var(--pr2)}
+nav .ic{font-size:21px;line-height:1.3}nav .br{display:none}
+main{max-width:980px;margin:auto;padding:0 12px 40px}
+button,input,select{font:inherit;color:inherit}
+button{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 14px;cursor:pointer}
+button.on,button.p{background:var(--pr);color:#fff;border-color:var(--pr)}button.d{color:var(--dg)}
+input{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;min-width:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.stat{background:var(--pr2);border-radius:12px;padding:10px;text-align:center}.stat b{font-size:26px;display:block;color:var(--pr)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--bd);text-align:center}th:first-child,td:first-child{text-align:start}
+tr.star td{background:var(--gb)}input[type=checkbox]{width:22px;height:22px;accent-color:var(--pr)}
+.q{border-inline-start:4px solid var(--gold);padding:4px 12px;margin:8px 0}.mu{color:var(--mu);font-size:13px}
+.bar{height:8px;background:var(--pr2);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--pr)}
+@media(max-width:899px){nav{left:0;right:0;bottom:0;border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}main{padding-bottom:96px}}
+@media(min-width:900px){body{padding-inline-start:220px}nav{top:0;bottom:0;left:0;width:220px;flex-direction:column;justify-content:flex-start;gap:4px;padding:14px 10px;border-inline-end:1px solid var(--bd)}nav .br{display:block;font-size:19px;font-weight:700;color:var(--pr);padding:8px 10px 16px}nav button{flex:none;flex-direction:row;gap:10px;font-size:15px;padding:11px 14px;border-radius:10px}}
+.sheet{background:#fff;color:#1b2a22;width:100%;max-width:210mm;margin:12px auto;border:1px solid #cfd8d2;box-shadow:0 4px 18px rgba(0,0,0,.12);border-radius:4px;overflow:hidden}
+.sh{background:linear-gradient(135deg,#0f6b46,#1c8f5f);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}.sh h2{margin:0;font-size:24px}.sh .sr{text-align:center;font-size:34px;line-height:1.2}.sh small{font-size:11px}
+.ss{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:14px 22px}.ss div{background:#e8f3ed;border-radius:8px;text-align:center;padding:8px 2px;font-size:12px;color:#456}.ss b{display:block;font-size:20px;color:#0f6b46}
+.rw{overflow-x:auto;padding:0 22px}.rt{min-width:500px;width:100%;font-size:12.5px}.rt th{background:#0f6b46;color:#fff;font-weight:600;padding:7px 4px}.rt td{padding:6px 4px;border-bottom:1px solid #e1e8e3}.rt tr:nth-child(even) td{background:#f6faf7}.rt tr.star td{background:#fff3c4}
+.sg{display:flex;justify-content:space-between;padding:50px 30px 20px}.sg div{border-top:1px solid #333;padding-top:4px;width:36%;text-align:center;font-size:12px}
+.ft{text-align:center;color:#789;font-size:10px;padding:0 0 12px}
+@page{size:A4;margin:8mm}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}:root,body{padding:0!important;background:#fff}header,nav,.np{display:none!important}main{max-width:none;padding:0}.sheet{width:100%;max-width:none;margin:0;border:0;box-shadow:none}.rw{overflow:visible}}
+@media(max-width:600px){.ss{grid-template-columns:repeat(3,1fr)}.sh h2{font-size:18px}}
+.ls{max-width:297mm}.reg .rt{min-width:980px;font-size:11px;border-collapse:collapse}.reg .rt th{padding:4px 1px;border:1px solid #0b5636}.reg .rt td{padding:3px 1px;line-height:1.35!important;border:1px solid #d9e4dd;text-align:center}
+.reg .nm{text-align:start!important;white-space:nowrap;padding:3px 7px!important;min-width:120px;font-size:12px}.reg .nm small{color:#789;font-size:9px}.reg .sn{background:#fff3c4!important}
+.g5{background:#fde68a!important;font-weight:700;color:#7a5200}.g1,.g2,.g3,.g4{background:#dff3e8!important}.g0{background:#fde2e0!important;color:#a33}.gn{background:#f1f3f2!important;color:#aaa}.reg .rt th.fr{background:#b8860b!important}
+.reg thead{display:table-header-group}.reg tr{break-inside:avoid}.rh{background:linear-gradient(135deg,#0f6b46,#1c8f5f);color:#fff;text-align:center;padding:12px 22px 10px}.rh h2{margin:2px 0;font-size:28px}.rh .ar{font-size:20px;line-height:1.8;color:#ffe9a6}.rh .sub{font-size:14px;opacity:.95}
+.lg{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;font-size:11px;color:#456;padding:8px 22px 0}.lg i{display:inline-block;width:12px;height:12px;border:1px solid #bbb;vertical-align:middle;margin-inline-end:4px}
+.rt th small{display:block;font-size:8px;font-weight:400;opacity:.9;line-height:1}
+.bk .rt td{height:19px;padding:0;border:1px solid #9fb5a8}.bk .rt td.bl{background:#fff}.bk .rt td.bf{background:#fff3c4}.bk .nm{width:130px;background:#f6faf7;line-height:1.5}.bk .pn{width:38px;font-size:11px;background:#f6faf7;color:#0f6b46;font-weight:700}.bk tbody{break-inside:avoid}.bk tbody tr:first-child td{border-top:2px solid #0f6b46}
+</style></head><body>
+<header><h1>🕌 Namaz Attendance</h1><small id="dt"></small></header>
+<nav id="nav"></nav><main id="m"></main>
+<script>
+const P=[['Fajr','فجر'],['Zuhr','ظہر'],['Asr','عصر'],['Maghrib','مغرب'],['Isha','عشاء']];
+const A=[
+['حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ وَقُومُوا لِلَّهِ قَانِتِينَ','نمازوں کی حفاظت کرو، خاص کر درمیانی نماز کی، اور اللہ کے حضور ادب سے کھڑے ہو۔','Guard the prayers, especially the middle prayer, and stand before Allah devoutly.','Al-Baqarah 2:238'],
+['إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ','بے شک نماز بے حیائی اور برے کاموں سے روکتی ہے۔','Indeed, prayer prevents immorality and wrongdoing.','Al-Ankabut 29:45'],
+['وَأَقِمِ الصَّلَاةَ لِذِكْرِي','اور میری یاد کے لیے نماز قائم کرو۔','And establish prayer for My remembrance.','Taha 20:14'],
+['إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا','بے شک نماز مومنوں پر مقررہ وقتوں میں فرض ہے۔','Indeed, prayer is prescribed for the believers at specified times.','An-Nisa 4:103'],
+['وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ','اور صبر اور نماز کے ذریعے مدد مانگو۔','Seek help through patience and prayer.','Al-Baqarah 2:45'],
+['قَدْ أَفْلَحَ الْمُؤْمِنُونَ ۝ الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ','یقیناً ایمان والے کامیاب ہو گئے، جو اپنی نماز میں خشوع کرتے ہیں۔','Successful indeed are the believers, those who are humble in their prayer.','Al-Mu’minun 23:1–2'],
+['يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ','اے ایمان والو! صبر اور نماز سے مدد لو، بے شک اللہ صبر کرنے والوں کے ساتھ ہے۔','O believers, seek help through patience and prayer. Indeed, Allah is with the patient.','Al-Baqarah 2:153']];
+const H=[
+['قیامت کے دن بندے سے سب سے پہلے نماز کا حساب لیا جائے گا۔','The first thing a servant will be held accountable for on the Day of Judgment is prayer.','Tirmidhi, Nasa’i'],
+['جس نے دو ٹھنڈی نمازیں (فجر اور عصر) پڑھیں وہ جنت میں داخل ہوگا۔','Whoever prays the two cool prayers (Fajr and Asr) will enter Paradise.','Bukhari, Muslim'],
+['پانچ نمازوں کی مثال اس نہر کی سی ہے جو تمہارے دروازے پر بہتی ہو اور تم روزانہ پانچ بار اس میں نہاؤ۔','The five prayers are like a flowing river at your door in which you bathe five times a day.','Muslim'],
+['جس نے فجر کی نماز پڑھی وہ اللہ کی حفاظت میں ہے۔','Whoever prays Fajr is under the protection of Allah.','Muslim'],
+['سب سے بہتر عمل وقت پر نماز ادا کرنا ہے۔','The best of deeds is to pray at its proper time.','Bukhari, Muslim'],
+['باجماعت نماز اکیلے نماز سے ستائیس گنا افضل ہے۔','Prayer in congregation is twenty-seven times better than prayer alone.','Bukhari, Muslim'],
+['میری آنکھوں کی ٹھنڈک نماز میں رکھی گئی ہے۔','The coolness of my eyes has been placed in prayer.','Nasa’i']];
+const U=/[\u0600-\u06FF]/;
+let D={persons:[],att:{}};
+try{D=JSON.parse(localStorage.getItem('namaz_v1'))||D}catch(e){}
+const save=()=>{try{localStorage.setItem('namaz_v1',JSON.stringify(D))}catch(e){}};
+const pad=n=>String(n).padStart(2,'0');
+const ds=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const today=()=>ds(new Date());
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rec=(d,id)=>(D.att[d]&&D.att[d][id])||[0,0,0,0,0];
+const cnt=a=>a.reduce((x,y)=>x+y,0);
+let tab='dash',adate=today(),edit=null,delId=null,rf=today().slice(0,8)+'01',rt=today(),dl=null;
+const nav=[['dash','Dashboard','🏠'],['att','Attendance','✅'],['per','Persons','👥'],['rep','Reports','📄']];
+function fx(root){(root||document).querySelectorAll('h1,h2,h3,td,th,p,span,button,b,small,div,input').forEach(e=>{
+ if(e.classList.contains('ar'))return;
+ const t=e.tagName=='INPUT'?e.value:(e.children.length?'':e.textContent);
+ e.classList.toggle('ur',U.test(t));})}
+document.addEventListener('input',e=>{if(e.target.tagName=='INPUT'&&e.target.type=='text')e.target.classList.toggle('ur',U.test(e.target.value))});
+const ph=(i)=>`<span>${P[i][0]}</span><br><span>${P[i][1]}</span>`;
+function perfectPeople(d){return D.persons.filter(p=>cnt(rec(d,p.id))==5)}
+function render(){
+ $('nav').innerHTML='<div class="br">🕌 Namaz</div>'+nav.map(n=>`<button class="${tab==n[0]||(n[0]=='rep'&&tab=='reg')?'on':''}" onclick="tab='${n[0]}';render();scrollTo(0,0)"><span class="ic">${n[2]}</span><span>${n[1]}</span></button>`).join('');
+ $('dt').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+ let pg=document.getElementById('pg');if(tab=='reg'){if(!pg){pg=document.createElement('style');pg.id='pg';document.head.appendChild(pg)}pg.textContent='@page{size:A4 landscape;margin:7mm}'}else if(pg)pg.remove();
+ $('m').innerHTML=({dash,att,per,rep,reg})[tab]();
+ fx();}
+const $=id=>document.getElementById(id);
+function dash(){
+ const t=today(),n=D.persons.length,i=Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5);
+ const a=A[i%A.length],h=H[i%H.length];
+ const per=P.map((_,k)=>D.persons.filter(p=>rec(t,p.id)[k]).length);
+ const full=perfectPeople(t);
+ const mo=t.slice(0,8),ms=D.persons.map(p=>{let c=0;Object.keys(D.att).filter(d=>d.startsWith(mo)).forEach(d=>c+=cnt(rec(d,p.id)));return[p.name,c]}).sort((x,y)=>y[1]-x[1]).slice(0,5).filter(x=>x[1]>0);
+ return `<div class="card"><h3 style="margin:0">📖 Ayat of the Day</h3><div class="q"><p class="ar">${a[0]}</p><p>${a[1]}</p><p class="mu">${a[2]} — ${a[3]}</p></div>
+ <h3 style="margin:10px 0 0">🌙 Hadees of the Day</h3><div class="q"><p>${h[0]}</p><p class="mu">${h[1]} — ${h[2]}</p></div></div>
+ <div class="grid"><div class="stat"><b>${n}</b><span>Total persons</span></div><div class="stat"><b>${per.reduce((x,y)=>x+y,0)}</b><span>Prayers today</span></div><div class="stat"><b>${full.length}</b><span>🏆 All 5 today</span></div></div>
+ <div class="card"><h3 style="margin:0 0 8px">Today by prayer</h3>${P.map((p,k)=>`<div class="row" style="margin:6px 0"><span style="width:90px">${p[0]} <span>${p[1]}</span></span><div class="bar" style="flex:1"><i style="width:${n?per[k]/n*100:0}%"></i></div><b>${per[k]}</b></div>`).join('')}</div>
+ <div class="card"><h3 style="margin:0 0 6px">🏆 Today’s stars</h3>${full.length?full.map(p=>`<span class="stat" style="display:inline-block;margin:3px;padding:4px 12px">${esc(p.name)}</span>`).join(''):'<p class="mu">No one has completed all 5 prayers yet today.</p>'}</div>
+ <div class="card"><h3 style="margin:0 0 6px">This month’s top</h3>${ms.length?ms.map((x,k)=>`<div class="row"><b>${k+1}.</b><span>${esc(x[0])}</span><span class="mu">— ${x[1]} prayers</span></div>`).join(''):'<p class="mu">No records yet.</p>'}</div>`}
+function att(){
+ const rows=D.persons.map(p=>{const r=rec(adate,p.id),c=cnt(r);return `<tr class="${c==5?'star':''}"><td>${c==5?'🏆 ':''}<span>${esc(p.name)}</span><br><small class="mu">${esc(p.cls||'')}</small></td>${r.map((v,k)=>`<td><input type="checkbox" ${v?'checked':''} onchange="tog('${p.id}',${k},this.checked)"></td>`).join('')}<td><b>${c}/5</b></td><td>${c==5?`<button class="p" onclick="trophy('${p.id}','${adate}')">JPG 🏆</button>`:`<button onclick="all5('${p.id}')">All</button>`}</td></tr>`}).join('');
+ return `<div class="card"><div class="row"><b>Date</b><button onclick="stepd(-1)">‹</button><input type="date" value="${adate}" max="${today()}" onchange="adate=this.value||today();render()"><button onclick="stepd(1)">›</button></div>
+ <div class="wrap"><table><tr><th>Name</th>${P.map((_,k)=>`<th>${ph(k)}</th>`).join('')}<th>Total</th><th></th></tr>${rows||'<tr><td colspan=8 class="mu">Add persons first.</td></tr>'}</table></div>
+ <p class="mu">Persons who offer all 5 prayers are highlighted and can receive a trophy.</p></div>`}
+function tog(id,k,v){D.att[adate]=D.att[adate]||{};const r=rec(adate,id).slice();r[k]=v?1:0;D.att[adate][id]=r;save();render()}
+function all5(id){D.att[adate]=D.att[adate]||{};D.att[adate][id]=[1,1,1,1,1];save();render()}
+function per(){
+ const e=D.persons.find(p=>p.id==edit);
+ return `<div class="card"><h3 style="margin:0 0 8px">${e?'Edit person':'Add person'}</h3><div class="row"><input type="text" id="pn" placeholder="Name / نام" value="${e?esc(e.name):''}" style="flex:2;min-width:140px"><input type="text" id="pc" placeholder="Class / Group" value="${e?esc(e.cls||''):''}" style="flex:1;min-width:100px"><button class="p" onclick="savep()">${e?'Update':'Add'}</button>${e?'<button onclick="edit=null;render()">Cancel</button>':''}</div></div>
+ <div class="card"><h3 style="margin:0 0 6px">Manage persons (${D.persons.length})</h3>${D.persons.map(p=>`<div class="row" style="padding:6px 0;border-bottom:1px solid var(--bd)"><div style="flex:1"><span>${esc(p.name)}</span> <small class="mu">${esc(p.cls||'')}</small></div><button onclick="edit='${p.id}';render()">Edit</button><button class="d" onclick="delp('${p.id}')">${delId==p.id?'Sure? Delete':'Delete'}</button></div>`).join('')||'<p class="mu">No persons yet.</p>'}</div>`}
+function savep(){const n=$('pn').value.trim();if(!n)return;const c=$('pc').value.trim();
+ if(edit){const p=D.persons.find(p=>p.id==edit);p.name=n;p.cls=c;edit=null}else D.persons.push({id:'p'+Date.now(),name:n,cls:c});save();render()}
+function delp(id){if(delId!=id){delId=id;render();setTimeout(()=>{delId=null},4000);return}
+ D.persons=D.persons.filter(p=>p.id!=id);Object.values(D.att).forEach(o=>delete o[id]);delId=null;save();render()}
+function stats(){const days=Object.keys(D.att).filter(d=>d>=rf&&d<=rt).sort();
+ return D.persons.map(p=>{const c=[0,0,0,0,0];days.forEach(d=>rec(d,p.id).forEach((v,k)=>c[k]+=v));const t=cnt(c),pc=days.length?Math.round(t/(days.length*5)*100):0;return{p,c,t,pc,days:days.length}})}
+function rep(){const s=stats(),dn=s.length?s[0].days:0,tot=s.reduce((a,r)=>a+r.t,0),avg=s.length?Math.round(s.reduce((a,r)=>a+r.pc,0)/s.length):0,st=s.filter(r=>r.pc==100&&r.days).length;
+ const fd=d=>new Date(d+'T00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+ const rm=r=>r.pc==100&&r.days?'🏆 Excellent':r.pc>=80?'Very good':r.pc>=50?'Good':'Needs effort';
+ const rows=s.map((r,i)=>`<tr class="${r.pc==100&&r.days?'star':''}"><td>${i+1}</td><td><span>${esc(r.p.name)}</span></td><td><span>${esc(r.p.cls||'—')}</span></td>${r.c.map(v=>`<td>${v}</td>`).join('')}<td><b>${r.t}</b></td><td>${r.pc}%</td><td>${rm(r)}</td><td class="np">${r.pc==100&&r.days?`<button class="p" onclick="trophy('${r.p.id}','${rf} → ${rt}')">🏆</button>`:''}</td></tr>`).join('')||'<tr><td colspan=12>No data.</td></tr>';
+ return `<div class="card np"><div class="row"><b>From</b><input type="date" value="${rf}" onchange="rf=this.value;render()"><b>To</b><input type="date" value="${rt}" onchange="rt=this.value;render()"><button onclick="csv()">Download CSV</button><button class="p" onclick="print()">Print A4</button><button onclick="mon=rt.slice(0,7);tab='reg';render()">اردو ماہانہ رجسٹر ⇄ A4 Landscape</button></div><p class="mu" style="margin:8px 0 0">A4 preview below. Press Print, then choose “Save as PDF” to keep a copy.</p></div>
+ <div class="sheet"><div class="sh"><div><h2>Namaz Attendance Report</h2><span>Period: ${fd(rf)} – ${fd(rt)}</span></div><div class="sr">🕌<br><small>Generated ${fd(today())}</small></div></div>
+ <div class="ss"><div><b>${s.length}</b>Persons</div><div><b>${dn}</b>Days recorded</div><div><b>${tot}</b>Total prayers</div><div><b>${avg}%</b>Average</div><div><b>${st}</b>🏆 Trophies</div></div>
+ <div class="rw"><table class="rt"><tr><th>#</th><th>Name</th><th>Class</th>${P.map((_,k)=>`<th>${ph(k)}</th>`).join('')}<th>Total</th><th>%</th><th>Remark</th><th class="np"></th></tr>${rows}</table></div>
+ <div class="sg"><div>Teacher / Incharge</div><div>Principal / Head</div></div><div class="ft">Percentage is out of 5 prayers on each recorded day · May Allah accept our prayers</div></div>`}
+const UM=['January','February','March','April','May','June','July','August','September','October','November','December'];const UM0=['جنوری','فروری','مارچ','اپریل','مئی','جون','جولائی','اگست','ستمبر','اکتوبر','نومبر','دسمبر'];
+const ud=n=>String(n);const ud0=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);let mon=today().slice(0,7);
+function regF(){
+ const [y,m]=mon.split('-').map(Number),dim=new Date(y,m,0).getDate(),all=[];
+ for(let d=1;d<=dim;d++)all.push(y+'-'+pad(m)+'-'+pad(d));
+ const rd=all.filter(d=>D.att[d]&&Object.keys(D.att[d]).length);
+ const R=D.persons.map(p=>{const pc=[0,0,0,0,0];rd.forEach(d=>rec(d,p.id).forEach((v,k)=>pc[k]+=v));const t=cnt(pc);return{p,pc,t,pct:rd.length?Math.round(t/(rd.length*5)*100):0}});
+ const tot=R.reduce((a,r)=>a+r.t,0),avg=R.length?Math.round(R.reduce((a,r)=>a+r.pct,0)/R.length):0,star=r=>r.pct==100&&rd.length>0,st=R.filter(star).length;
+ const head=all.map((d,i)=>`<th class="${new Date(y,m-1,i+1).getDay()==5?'fr':''}">${ud(i+1)}</th>`).join('');
+ const rows=R.map(r=>`<tr><td class="nm ${star(r)?'sn':''}">${star(r)?'🏆 ':''}<span>${esc(r.p.name)}</span>${r.p.cls?` <small>${esc(r.p.cls)}</small>`:''}</td>${all.map(d=>{if(!rd.includes(d))return'<td class="gn">·</td>';const c=cnt(rec(d,r.p.id));return`<td class="g${c}">${ud(c)}</td>`}).join('')}${r.pc.map(v=>`<td><b>${ud(v)}</b></td>`).join('')}<td><b>${ud(r.t)}</b></td><td><b>${ud(r.pct)}%</b></td></tr>`).join('')||`<tr><td colspan="${dim+8}">کوئی ریکارڈ موجود نہیں</td></tr>`;
+ return `<div class="card np"><div class="row"><button onclick="tab='rep';render()">← Reports</button><b>Month</b><input type="month" value="${mon}" onchange="mon=this.value||mon;render()"><button class="p" onclick="print()">Print A4 Landscape</button></div><p class="mu" style="margin:8px 0 0">Urdu monthly register preview. In the print window choose Landscape and A4 if it is not already selected, then “Save as PDF” to keep a copy.</p></div>
+ <div class="sheet ls reg" dir="rtl"><div class="rh"><div class="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div><h2>ماہانہ نماز حاضری رجسٹر</h2><div class="sub">ماہ: ${UM[m-1]} ${ud(y)} &nbsp;|&nbsp; ریکارڈ شدہ دن: ${ud(rd.length)} &nbsp;|&nbsp; 🕌</div></div>
+ <div class="ss"><div><b>${ud(R.length)}</b>کل افراد</div><div><b>${ud(rd.length)}</b>ریکارڈ شدہ دن</div><div><b>${ud(tot)}</b>کل نمازیں</div><div><b>${ud(avg)}%</b>اوسط حاضری</div><div><b>${ud(st)}</b>🏆 ٹرافیاں</div></div>
+ <div class="rw"><table class="rt"><thead><tr><th>نام</th>${head}${P.map(p=>`<th>${p[1]}</th>`).join('')}<th>کل</th><th>فیصد</th></tr></thead><tbody>${rows}</tbody></table></div>
+ <div class="lg"><span><i style="background:#fde68a"></i>5 = پانچوں نمازیں</span><span><i style="background:#dff3e8"></i>1-4 = جزوی</span><span><i style="background:#fde2e0"></i>0 = کوئی نماز نہیں</span><span><i style="background:#f1f3f2"></i>· = ریکارڈ نہیں</span><span><i style="background:#b8860b"></i>جمعہ</span></div>
+ <div class="sg"><div>استاد / انچارج</div><div>پرنسپل / ہیڈ ماسٹر</div></div><div class="ft"><span class="ar">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا</span></div></div>`}
+let rmode='blank';
+function reg(){const f=regF(),i=f.indexOf('<div class="sheet');
+ const ctl=`<div class="card np"><div class="row"><button onclick="tab='rep';render()">← Reports</button><b>Month</b><input type="month" value="${mon}" onchange="mon=this.value||mon;render()"><button class="${rmode=='blank'?'on':''}" onclick="rmode='blank';render()">Blank (hand entry)</button><button class="${rmode=='filled'?'on':''}" onclick="rmode='filled';render()">With records</button><button class="p" onclick="print()">Print A4 Landscape</button></div><p class="mu" style="margin:8px 0 0">Blank: print it, tick each prayer by hand during the month, then enter the ticks in the Attendance tab on your phone. In the print window choose Landscape and A4 if needed.</p></div>`;
+ return ctl+(rmode=='blank'?blankSheet():f.slice(i))}
+function blankSheet(){
+ const [y,m]=mon.split('-').map(Number),dim=new Date(y,m,0).getDate(),wd=['Su','Mo','Tu','We','Th','Fr','Sa'],dd=[...Array(dim).keys()].map(i=>i+1),wk=d=>new Date(y,m-1,d).getDay();
+ const head=dd.map(d=>`<th class="${wk(d)==5?'fr':''}">${d}<small>${wd[wk(d)]}</small></th>`).join('');
+ const body=D.persons.map((p,i)=>'<tbody>'+P.map((q,k)=>`<tr>${k==0?`<td class="nm" rowspan="5"><b>${i+1}.</b> <span>${esc(p.name)}</span>${p.cls?`<br><small>${esc(p.cls)}</small>`:''}</td>`:''}<td class="pn">${q[1]}</td>${dd.map(d=>`<td class="${wk(d)==5?'bf':'bl'}"></td>`).join('')}<td class="bl"></td></tr>`).join('')+'</tbody>').join('')||`<tbody><tr><td colspan="${dim+3}">کوئی شخص شامل نہیں</td></tr></tbody>`;
+ return `<div class="sheet ls reg bk" dir="rtl"><div class="rh"><div class="ar">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div><h2>ماہانہ نماز حاضری رجسٹر</h2><div class="sub">ماہ: ${UM[m-1]} ${y} &nbsp;|&nbsp; ہر ادا کی گئی نماز کے خانے میں ✓ لگائیں &nbsp;|&nbsp; 🕌</div></div>
+ <div class="rw" style="padding-top:10px"><table class="rt"><thead><tr><th>نام</th><th>نماز</th>${head}<th>کل</th></tr></thead>${body}</table></div>
+ <div class="sg"><div>استاد / انچارج</div><div>پرنسپل / ہیڈ ماسٹر</div></div></div>`}
+function stepd(n){const d=new Date(adate+'T00:00');d.setDate(d.getDate()+n);const s=ds(d);if(s<=today()){adate=s;render()}}
+function repOld(){const s=stats();
+ return `<div class="card"><div class="row"><b>From</b><input type="date" value="${rf}" onchange="rf=this.value;render()"><b>To</b><input type="date" value="${rt}" onchange="rt=this.value;render()"><button onclick="csv()">Download CSV</button><button onclick="print()">Print</button></div>
+ <div class="wrap"><table><tr><th>Name</th>${P.map((_,k)=>`<th>${ph(k)}</th>`).join('')}<th>Total</th><th>%</th><th></th></tr>${s.map(r=>`<tr class="${r.pc==100&&r.days?'star':''}"><td><span>${esc(r.p.name)}</span></td>${r.c.map(v=>`<td>${v}</td>`).join('')}<td><b>${r.t}</b></td><td>${r.pc}%</td><td>${r.pc==100&&r.days?`<button class="p" onclick="trophy('${r.p.id}','${rf} → ${rt}')">🏆</button>`:''}</td></tr>`).join('')||'<tr><td colspan=9 class="mu">No data.</td></tr>'}</table></div>
+ <p class="mu">Percentage is out of 5 prayers on each recorded day. 🏆 means every prayer on every recorded day.</p></div>`}
+async function dlf(name,blob){try{dl=dl||await claude.use('downloads')}catch(e){}
+ if(!dl){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);return}try{await dl.save({filename:name,data:blob})}catch(e){}}
+function csv(){const r=[['Name','Class',...P.map(p=>p[0]),'Total','Percent']];
+ stats().forEach(s=>r.push([s.p.name,s.p.cls||'',...s.c,s.t,s.pc+'%']));
+ dlf('namaz-report-'+rf+'-to-'+rt+'.csv',new Blob(['\ufeff'+r.map(x=>x.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n')],{type:'text/csv'}))}
+async function trophy(id,label){const p=D.persons.find(p=>p.id==id);if(!p)return;
+ const f=U.test(p.name)?"'Mhr Nastaleeq Web','Noto Nastaliq Urdu',serif":'Georgia,serif';
+ try{await document.fonts.load("48px 'Noto Nastaliq Urdu'")}catch(e){}
+ const c=document.createElement('canvas');c.width=1200;c.height=850;const x=c.getContext('2d');
+ let g=x.createLinearGradient(0,0,0,850);g.addColorStop(0,'#fff8dc');g.addColorStop(1,'#f3dd8f');x.fillStyle=g;x.fillRect(0,0,1200,850);
+ x.strokeStyle='#0f6b46';x.lineWidth=14;x.strokeRect(30,30,1140,790);x.strokeStyle='#b8860b';x.lineWidth=4;x.strokeRect(52,52,1096,746);
+ x.textAlign='center';x.fillStyle='#0f6b46';x.font='bold 54px Georgia,serif';x.fillText('Certificate of Appreciation',600,150);
+ x.font='190px serif';x.fillText('🏆',600,360);
+ x.fillStyle='#444';x.font='30px Georgia,serif';x.fillText('Proudly awarded to',600,440);
+ x.fillStyle='#8a5a00';x.font='bold 76px '+f;x.fillText(p.name,600,550);
+ x.fillStyle='#333';x.font='32px Georgia,serif';x.fillText('for offering all five daily prayers',600,625);
+ x.font='italic 28px Georgia,serif';x.fillText('Fajr · Zuhr · Asr · Maghrib · Isha',600,675);
+ x.fillStyle='#0f6b46';x.font='bold 30px Georgia,serif';x.fillText(label,600,740);
+ x.fillStyle='#777';x.font='22px Georgia,serif';x.fillText('May Allah accept and reward you. Aameen.',600,780);
+ c.toBlob(b=>dlf('trophy-'+p.name.replace(/[^\w\u0600-\u06FF]+/g,'_')+'.jpg',b),'image/jpeg',.92)}
+render();
+</script></body></html>
